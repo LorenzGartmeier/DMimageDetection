@@ -21,7 +21,7 @@ import torch
 from torch.utils.data.sampler import WeightedRandomSampler, RandomSampler
 from torchvision.datasets import ImageFolder
 from PIL import ImageFile
-from .processing import make_processing, add_processing_arguments
+from utils.processing import make_processing, add_processing_arguments
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
