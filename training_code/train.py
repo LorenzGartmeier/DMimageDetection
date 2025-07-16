@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
     opt = parser.parse_args()
 
-    valid_data_loader = create_dataloader(opt, subdir="val", is_train=False)
+    valid_data_loader = create_dataloader(opt, subdir="valid", is_train=False)
     train_data_loader = create_dataloader(opt, subdir="train", is_train=True)
     print()
     print("# validation batches = %d" % len(valid_data_loader))
@@ -73,6 +73,8 @@ if __name__ == "__main__":
 
         # Validation
         print("Validation ...", flush=True)
+        model.eval()
+        model = model.to("cuda:0")
         y_true, y_pred, y_path = model.predict(valid_data_loader)
         acc = balanced_accuracy_score(y_true, y_pred > 0.0)
         auc = roc_auc_score(y_true, y_pred)
